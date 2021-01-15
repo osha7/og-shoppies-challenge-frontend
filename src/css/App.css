@@ -1,3 +1,29 @@
 .App {
     text-align: center;
 }
+
+.search-results {
+    margin: 2em;
+}
+
+.search-results-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 20em;
+    grid-column-gap: 0.25rem;
+    grid-row-gap: 5em;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.ind-movie-div {
+    margin-bottom: 2em;
+}
+
+.ind-movie-div img {
+    /* width: 100%; */
+    height: 75%;
+    /* background-size: contain; */
+    /* object-fit: cover; */
+    object-fit: contain;
+}
