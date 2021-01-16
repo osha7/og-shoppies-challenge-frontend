@@ -2,16 +2,135 @@
     text-align: center;
 }
 
+.main {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.main {
+    background-image: linear-gradient(
+            to right bottom,
+            rgba(245, 245, 245, 0.5),
+            rgba(245, 245, 245, 0.5)
+        ),
+        url(noom-peerapong-2uwFEAGUm6E-unsplash.jpg);
+    height: 650px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    display: flex;
+}
+
+.main-section-1,
+.main-section-2 {
+    background-color: rgba(245, 245, 245, 0.75);
+    height: 10em;
+
+    /* width: 50%; */
+    color: #5f5652;
+    padding: 2em;
+    margin: auto;
+}
+.main-section-1 {
+    width: 120%;
+}
+.main-section-2 {
+    width: 80%;
+    display: flex;
+    /* padding-left: 2em; */
+}
+
+.main a,
+.search-container a {
+    background-color: #5f5652;
+    text-decoration: none;
+    color: white;
+    padding: 1em;
+    box-shadow: inset 0 0 10px whitesmoke;
+    border-radius: 1em;
+    margin: 0.5em;
+}
+
+.main a {
+    padding-bottom: 0.5em;
+    margin: auto 5%;
+    margin-right: 2em;
+    height: 2em;
+}
+
+.nav-buttons {
+    margin-top: 2em;
+    margin-left: 75%;
+}
+
+.nav-buttons a {
+    height: 1.5em;
+}
+
+.main a:hover,
+.main a:active,
+.search-container a:hover,
+.search-container a:active {
+    transform: translateY(-3px);
+    box-shadow: inset 0 0 10px whitesmoke,
+        -0.25em 0.5em 0.5em rgba(0, 0, 0, 0.25);
+    transition: all 0.5s ease;
+}
+
+.main h1 {
+    /* margin: auto; */
+    margin-top: 6%;
+    font-size: 2.5em;
+    font-weight: bolder;
+    /* border: 2px solid rgb(255, 215, 0); */
+    /* -webkit-text-stroke: 0.1px rgb(255, 215, 0); */
+}
+
+/* .search-container-before, */
+.search-container-after {
+    background-color: whitesmoke;
+    padding: 2em;
+    padding-bottom: 3em;
+}
+
+.search-container-before {
+    background-image: linear-gradient(
+            to right bottom,
+            rgba(245, 245, 245, 0.8),
+            rgba(245, 245, 245, 0.8)
+        ),
+        url(noom-peerapong-2uwFEAGUm6E-unsplash.jpg);
+    height: 650px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-container-before h1 {
+    margin-top: 15%;
+    color: #5f5652;
+    text-shadow: -0.25em 0.25em 0.25em rgba(0, 0, 0, 0.25);
+}
+
 .search-results {
+    margin: 2em;
+}
+
+.search-results h2 {
     margin: 2em;
 }
 
 .search-results-cards {
     display: grid;
+    justify-content: center;
+    align-content: center;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: 20em;
     grid-column-gap: 0.25rem;
-    grid-row-gap: 5em;
+    grid-row-gap: 6em;
     margin: 0 auto;
     width: 100%;
 }
@@ -26,4 +145,19 @@
     /* background-size: contain; */
     /* object-fit: cover; */
     object-fit: contain;
+}
+
+.search-bar input {
+    height: 4em;
+    border: none;
+    width: 30%;
+    padding: 2em;
+}
+.search-btn {
+    /* height: 4em;
+    width: 4em; */
+    border: 1.5px solid #5f5652;
+    font-size: 1.75em;
+    color: #5f5652;
+    padding: 0.5em;
 }
