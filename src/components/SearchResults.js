@@ -66,7 +66,7 @@ function SearchResults(props) {
 // ---------------------------------------------------------------------
                 setSavedNominations(prevState => {
                     console.log("prevstate", prevState)
-                    debugger
+                    // debugger
                     return [...prevState, data]
                 })
 // ---------------------------------------------------------------------
