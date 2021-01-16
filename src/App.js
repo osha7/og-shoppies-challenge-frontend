@@ -5,6 +5,8 @@ import Nominations from './containers/Nominations';
 import Main from './containers/Main';
 
 function App() {
+
+  
   return (
     <Router>
       <div className="App">
