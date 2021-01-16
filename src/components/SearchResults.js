@@ -6,8 +6,6 @@ function SearchResults(props) {
     let searchQuery = props.query;
 
     const [movieResults, setMovieResults] = useState([]);
-    // const [nominatedMovies, setNominatedMovies] = useState([])
-    // const nominatedMovies = []
     const [savedNominations, setSavedNominations] = useState([]);
 
     useEffect(() => {
@@ -20,18 +18,31 @@ function SearchResults(props) {
             // the response from OMDB_API default only serves the limit=10 movies in the fetch
             // an OMDB npm plugin (npm i omdb) exists where you can use set params on an omdb function: omdb.search('true', page=1) ((or: omdb.search_movie('true', page=2))) // each page serves 100 movies per page
         };
-        const fetchNominatedMovies = async () => {
-            const response = await fetch(API_URL + "/nominated_movies");
-            const fetchData = await response.json();
-            console.log(fetchData);
-            // setSavedNominations(fetchData);
-        };
 
         fetchMovieSearchResults();
-        fetchNominatedMovies();
+        fetchNominatedMovies()
+        
     }, [searchQuery]);
 
+    const fetchNominatedMovies = async () => {
+        const response = await fetch(API_URL + "/nominated_movies");
+        const fetchData = await response.json();
+        const funneledData = fetchData.nominated_movies
+        setSavedNominations(funneledData);
+        console.log("fetchNominatedMovies", savedNominations)
+    };
+
     const handleOnClick = (movie) => {
+        // console.log("savedNominations", savedNominations)
+        // fetchNominatedMovies();
+        console.log("savedNominations", savedNominations)
+        handleNomination(movie)
+    };
+
+    const handleNomination = async (movie) => {
+        // const result = await fetchNominatedMovies()
+        console.log("handleNomination", savedNominations)
+        // debugger
         if (savedNominations.length < 5) {
             console.log("less than 5", movie);
             const postMovieNominations = async () => {
@@ -51,6 +62,15 @@ function SearchResults(props) {
                 const data = await response.json();
                 // return data
                 console.log("data from POST", data);
+                console.log("afterData", savedNominations)
+// ---------------------------------------------------------------------
+                setSavedNominations(prevState => {
+                    console.log("prevstate", prevState)
+                    debugger
+                    return [...prevState, data]
+                })
+// ---------------------------------------------------------------------
+                console.log("after trying to change state", savedNominations)
                 // try {
 
                 //     // if (response.ok) {
@@ -63,17 +83,16 @@ function SearchResults(props) {
                 // }
             };
             postMovieNominations();
-            // console.log(data);
-            // nominatedMovies.push(movie)
-            // console.log("array", nominatedMovies)
-        } else if (savedNominations.length >= 5) {
+        } else {
+            console.log("NO MORE THAN 5", movie);
+            console.log("result", savedNominations)
             alert(
-                "Only 5 nominations allowed. You can delete a previous nomination to choose this movie instead."
+                "Only 5 nominations allowed. On the Nominations page you can delete a previous nomination to choose this movie instead."
             );
         }
-    };
+    }
 
-    const results1 = movieResults.map((movie) => {
+    const mappedMovieResults = movieResults.map((movie) => {
         // console.log(movie);
         return (
             <div className="ind-movie-div" key={movie.imdbID}>
@@ -90,8 +109,7 @@ function SearchResults(props) {
 
     return (
         <div className="search-results">
-            {/* {console.log(movieResults)} */}
-            <div className="search-results-cards">{results1}</div>
+            <div className="search-results-cards">{mappedMovieResults}</div>
         </div>
     );
 }
