@@ -7,9 +7,7 @@ function SearchResults(props) {
 
     const [movieResults, setMovieResults] = useState([]);
     const [savedNominations, setSavedNominations] = useState([]);
-    // const [selected, setSelected] = useState(false)
     const [disabled, setDisabled] = useState([])
-    const [color, setColor] = useState('pink')
 
     useEffect(() => {
         const fetchMovieSearchResults = async () => {
@@ -35,27 +33,17 @@ function SearchResults(props) {
     };
 
     const handleOnClick = (e, movie) => {
-        // console.log("savedNominations", savedNominations);
-        // setSelected(true)
-// ------------------------------------------
         // console.log(e, movie)
         // e.target.disabled = true
-// ------------------------------------------
         setDisabled([...disabled, movie.imdbID])
-
-
-        setColor('yellow')
         handleNomination(movie);
     };
 
     const handleNomination = async (movie) => {
-        // console.log("handleNomination", savedNominations);
-        // debugger
         if (savedNominations.length === 4) {
             alert("Congratulations, you Have 5 nominations & have finished!");
         }
         if (savedNominations.length < 5) {
-            // console.log("less than 5", movie);
             const postMovieNominations = async () => {
                 const settings = {
                     method: "POST",
@@ -74,7 +62,6 @@ function SearchResults(props) {
 
                 setSavedNominations((prevState) => {
                     // console.log("prevstate", prevState);
-                    // debugger
                     return [...prevState, data];
                 });
             };
@@ -90,7 +77,6 @@ function SearchResults(props) {
     };
 
     const mappedMovieResults = (movieResults) ? (movieResults.map((movie) => {
-        // console.log(movie);
         return (
             <div className="ind-movie-div" key={movie.imdbID}>
                 <img src={movie.Poster} alt={movie.Title} />
@@ -98,7 +84,7 @@ function SearchResults(props) {
                 <p>Release Year: {movie.Year}</p>
 
                 <button disabled={disabled.indexOf(movie.imdbID)!== -1} onClick={(e) => handleOnClick(e, movie)} style={{
-                    backgroundColor: `${color}`,
+                    // backgroundColor: `${color}`,
                     width: '10em',
                     height: '1.5em'
                 }}>
