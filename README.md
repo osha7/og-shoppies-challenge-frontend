@@ -1,3 +1,5 @@
+![Movie Banner](https://i.imgur.com/yzPy6Pi.jpg)
+
 # Osha Groetz - SHOPPIES MOVIE API
 
 Search movies with async Fetch requests to [OMDb API](http://www.omdbapi.com/)  
