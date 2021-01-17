@@ -11,7 +11,7 @@ function SearchResults(props) {
 
     useEffect(() => {
         const fetchMovieSearchResults = async () => {
-            const OMDB_API = `https://www.omdbapi.com/?apikey=700a3803&s=${searchQuery}`;
+            const OMDB_API = `https://www.omdbapi.com/?apikey=700a3803&s=${searchQuery}&type=movie&page=1`;
             const response = await fetch(OMDB_API);
             const fetchData = await response.json();
             // console.log(fetchData.Search);
