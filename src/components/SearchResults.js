@@ -2,27 +2,28 @@ import React, { useState, useEffect } from "react";
 import { API_URL } from "../ConstantURLs";
 
 function SearchResults(props) {
-    // trying to get more than limit=10, but doesn't work: let searchQuery = (props.query + ', page=1')
     let searchQuery = props.query;
 
     const [movieResults, setMovieResults] = useState([]);
     const [savedNominations, setSavedNominations] = useState([]);
     const [disabled, setDisabled] = useState([])
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
-        const fetchMovieSearchResults = async () => {
-            const OMDB_API = `https://www.omdbapi.com/?apikey=700a3803&s=${searchQuery}&type=movie&page=1`;
-            const response = await fetch(OMDB_API);
-            const fetchData = await response.json();
-            // console.log(fetchData.Search);
-            setMovieResults(fetchData.Search);
-            // the response from OMDB_API default only serves the limit=10 movies in the fetch
-            // an OMDB npm plugin (npm i omdb) exists where you can use set params on an omdb function: omdb.search('true', page=1) ((or: omdb.search_movie('true', page=2))) // each page serves 100 movies per page
-        };
 
         fetchMovieSearchResults();
         fetchNominatedMovies();
-    }, [searchQuery]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [searchQuery, page]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const fetchMovieSearchResults = async () => {
+        console.log(page)
+        const OMDB_API = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${searchQuery}&type=movie&page=${page || 1}`;
+        
+        const response = await fetch(OMDB_API);
+        const fetchData = await response.json();
+        // console.log(fetchData.Search);
+        setMovieResults(fetchData.Search);
+    };
 
     const fetchNominatedMovies = async () => {
         const response = await fetch(API_URL + "/nominated_movies");
@@ -100,6 +101,10 @@ function SearchResults(props) {
             console.log(disabled),
             <div className="search-results">
                 <div className="search-results-cards">{mappedMovieResults}</div>
+                <div className="change-page">
+                    <button onClick={page > 1 ? (() => setPage(page - 1)) : (() => setPage(1))}>Previous</button>
+                    <button onClick={() => setPage(page + 1)}>Next</button>
+                </div>
             </div>
         );
     } else {
