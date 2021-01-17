@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import SearchBar from '../components/SearchBar';
-import SearchResults from '../components/SearchResults'
+import React, { useState } from "react";
+import SearchBar from "../components/SearchBar";
+import SearchResults from "../components/SearchResults";
+import { Link } from "react-router-dom";
 
 function Search() {
-    const [query, setQuery] = useState('')
+    const [query, setQuery] = useState("");
 
     const retrievingQuery = (searchTerms) => {
         // console.log(searchTerms)
-        let newQueryString = searchTerms.split(" ").join('')
-        setQuery(newQueryString)
-
-    }
+        let newQueryString = searchTerms.split(" ").join("");
+        setQuery(newQueryString);
+    };
 
     if (query) {
         return (
             <div className="search-container">
                 <div className="search-container-after">
-                <div className="nav-buttons">
-                    <a href="/">HOME</a>
-                    <a href="/nominations">NOMINATIONS</a>
-                </div>
+                    <div className="nav-buttons">
+                        <Link to="/">HOME</Link>
+                        <Link to="/nominations">NOMINATIONS</Link>
+                    </div>
                     <h1>SEARCH RESULTS</h1>
                     <SearchBar retrievingQuery={retrievingQuery} />
                     <SearchResults query={query} />
@@ -29,17 +29,16 @@ function Search() {
     } else {
         return (
             <div className="search-container">
-                
                 <div className="search-container-before">
-                <div className="nav-buttons">
-                    <a href="/">HOME</a>
-                    <a href="/nominations">NOMINATIONS</a>
-                </div>
+                    <div className="nav-buttons">
+                        <Link to="/">HOME</Link>
+                        <Link to="/nominations">NOMINATIONS</Link>
+                    </div>
                     <h1>SEARCH FOR MOVIES TO VOTE FOR HERE</h1>
                     <SearchBar retrievingQuery={retrievingQuery} />
                 </div>
             </div>
-        )
+        );
     }
 }
 

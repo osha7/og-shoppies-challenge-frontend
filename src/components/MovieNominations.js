@@ -56,13 +56,12 @@ function MovieNominations(props) {
                 <img src={nomination.poster} alt={nomination.title} />
                 <h3>{nomination.title}</h3>
                 <p>Release Year: {nomination.year}</p>
-                <button onClick={() => handleDelete(nomination)}>Delete</button>
+                <button onClick={() => handleDelete(nomination)}>Delete Nomination</button>
             </div>
         )
     })
 
     return (
-        console.log(nominationLength),
         <div className="nomination-results">
         <div className="nomination-results-cards">{mappedNominations}</div>
     </div>

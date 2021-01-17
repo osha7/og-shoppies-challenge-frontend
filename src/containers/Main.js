@@ -1,6 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 function Main(props) {
+
+
     
     return (
         <div className="main">
@@ -9,8 +12,8 @@ function Main(props) {
                 <p>Nominate Up To 5 Movies</p>
             </div>
             <div className="main-section-2" >
-                <a href="/search">MOVIE SEARCH</a>
-                <a href="/nominations">NOMINATIONS</a>
+                <Link to="/search" >MOVIE SEARCH</Link>
+                <Link to="/nominations" >NOMINATIONS</Link>
             </div>
         </div>
     );
