@@ -20,26 +20,25 @@ function SearchResults(props) {
         };
 
         fetchMovieSearchResults();
-        fetchNominatedMovies()
-        
-    }, [searchQuery]);// eslint-disable-line react-hooks/exhaustive-deps
+        fetchNominatedMovies();
+    }, [searchQuery]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const fetchNominatedMovies = async () => {
         const response = await fetch(API_URL + "/nominated_movies");
         const fetchData = await response.json();
-        const funneledData = fetchData.nominated_movies
+        const funneledData = fetchData.nominated_movies;
         setSavedNominations(funneledData);
-        console.log("fetchNominatedMovies", savedNominations)
+        console.log("fetchNominatedMovies", savedNominations);
     };
 
     const handleOnClick = (movie) => {
-        console.log("savedNominations", savedNominations)
-        handleNomination(movie)
+        console.log("savedNominations", savedNominations);
+        handleNomination(movie);
     };
 
     const handleNomination = async (movie) => {
         // const result = await fetchNominatedMovies()
-        console.log("handleNomination", savedNominations)
+        console.log("handleNomination", savedNominations);
         // debugger
         if (savedNominations.length < 5) {
             console.log("less than 5", movie);
@@ -59,11 +58,11 @@ function SearchResults(props) {
                 if (!response.ok) throw Error(response.message);
                 const data = await response.json();
 
-                setSavedNominations(prevState => {
-                    console.log("prevstate", prevState)
+                setSavedNominations((prevState) => {
+                    console.log("prevstate", prevState);
                     // debugger
-                    return [...prevState, data]
-                })
+                    return [...prevState, data];
+                });
 
                 // try {
 
@@ -79,14 +78,17 @@ function SearchResults(props) {
             postMovieNominations();
         } else {
             console.log("NO MORE THAN 5", movie);
-            console.log("result", savedNominations)
+            console.log("result", savedNominations);
             alert(
                 "Only 5 nominations allowed. On the Nominations page you can delete a previous nomination to choose this movie instead."
             );
         }
-    }
+        if (savedNominations.length === 5) {
+            alert("You Have 5 Nominations & Are All Finished!");
+        }
+    };
 
-    const mappedMovieResults = movieResults.map((movie) => {
+    const mappedMovieResults = (movieResults) ? (movieResults.map((movie) => {
         // console.log(movie);
         return (
             <div className="ind-movie-div" key={movie.imdbID}>
@@ -99,13 +101,25 @@ function SearchResults(props) {
                 </button>
             </div>
         );
-    });
+    })) : null
 
-    return (
-        <div className="search-results">
-            <div className="search-results-cards">{mappedMovieResults}</div>
-        </div>
-    );
+    if (mappedMovieResults) {
+        return (
+            <div className="search-results">
+                <div className="search-results-cards">{mappedMovieResults}</div>
+            </div>
+        );
+    } else {
+        return (
+            <div className="search-results">
+                <div>
+                    <h3>
+                        Your Search Did Not Return Any Results, Please Try Again
+                    </h3>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default SearchResults;
