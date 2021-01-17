@@ -93,6 +93,11 @@
     padding-bottom: 3em;
 }
 
+.search-container-after h1 {
+    padding-bottom: 1em;
+    color: #5f5652;
+}
+
 .search-container-before {
     background-image: linear-gradient(
             to right bottom,
@@ -145,6 +150,10 @@
     /* background-size: contain; */
     /* object-fit: cover; */
     object-fit: contain;
+}
+
+.search-bar {
+    padding-bottom: 2em;
 }
 
 .search-bar input {

@@ -7,7 +7,7 @@ function Nominations() {
 
     return (
         <div className="search-container">
-            <div className="">
+            <div className="search-container-after">
             <div className="nav-buttons">
                 <Link to="/">HOME</Link>
                 <Link to="/search">SEARCH</Link>

@@ -28,11 +28,11 @@ function SearchResults(props) {
         const fetchData = await response.json();
         const funneledData = fetchData.nominated_movies;
         setSavedNominations(funneledData);
-        console.log("fetchNominatedMovies", savedNominations);
+        // console.log("fetchNominatedMovies", savedNominations);
     };
 
     const handleOnClick = (movie) => {
-        console.log("savedNominations", savedNominations);
+        // console.log("savedNominations", savedNominations);
         handleNomination(movie);
     };
 
@@ -40,6 +40,9 @@ function SearchResults(props) {
         // const result = await fetchNominatedMovies()
         console.log("handleNomination", savedNominations);
         // debugger
+        if (savedNominations.length === 4) {
+            alert("Congratulations, you Have 5 nominations & have finished!");
+        }
         if (savedNominations.length < 5) {
             console.log("less than 5", movie);
             const postMovieNominations = async () => {
@@ -83,9 +86,8 @@ function SearchResults(props) {
                 "Only 5 nominations allowed. On the Nominations page you can delete a previous nomination to choose this movie instead."
             );
         }
-        if (savedNominations.length === 5) {
-            alert("You Have 5 Nominations & Are All Finished!");
-        }
+        // debugger
+        
     };
 
     const mappedMovieResults = (movieResults) ? (movieResults.map((movie) => {
