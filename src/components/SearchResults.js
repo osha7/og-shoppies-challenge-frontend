@@ -77,9 +77,10 @@ function SearchResults(props) {
     };
 
     const mappedMovieResults = (movieResults) ? (movieResults.map((movie) => {
+        const poster = (movie.Poster === "N/A" ? "https://i.imgur.com/o5qfWB0.png" : movie.Poster)
         return (
             <div className="ind-movie-div" key={movie.imdbID}>
-                <img src={movie.Poster} alt={movie.Title} />
+                <img src={poster} alt={movie.Title} />
                 <h3>{movie.Title}</h3>
                 <p>Release Year: {movie.Year}</p>
 

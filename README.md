@@ -2,6 +2,9 @@
 
 # Osha Groetz - SHOPPIES MOVIE API
 
+Visit Live Site: [The Shoppies](https://og-shoppies-challenge-frontend.vercel.app/)
+Heroku Hosted Backend: [Heroku](https://og-shoppies-challenge-backend.herokuapp.com/)
+
 Search movies with async Fetch requests to [OMDb API](http://www.omdbapi.com/)  
 Nominate up to 5 movies while saving data to a backend server using a PostgreSQL database
 
