@@ -22,7 +22,7 @@ function MovieNominations(props) {
 
 
     const handleDelete = (nomination) => {
-        console.group("here in Delete", nomination)
+        // console.group("here in Delete", nomination)
         const deleteNomination = async () => {
             const settings = {
                 method: "DELETE"
@@ -33,12 +33,11 @@ function MovieNominations(props) {
             )
             if (!response.ok) throw Error(response.message);
             const data = await response.json()
-            console.log("need to know data", data.notice)
             if (data.notice) {
                 alert(data.notice)
-                console.log(nominationLength)
+                // console.log(nominationLength)
                 setNominationLength(prevState => {
-                    console.log("prevstate", prevState)
+                    // console.log("prevstate", prevState)
                     return [prevState - 1]
                 })
 
