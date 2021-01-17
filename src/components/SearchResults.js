@@ -22,7 +22,7 @@ function SearchResults(props) {
         fetchMovieSearchResults();
         fetchNominatedMovies()
         
-    }, [searchQuery]);
+    }, [searchQuery]);// eslint-disable-line react-hooks/exhaustive-deps
 
     const fetchNominatedMovies = async () => {
         const response = await fetch(API_URL + "/nominated_movies");
@@ -33,8 +33,6 @@ function SearchResults(props) {
     };
 
     const handleOnClick = (movie) => {
-        // console.log("savedNominations", savedNominations)
-        // fetchNominatedMovies();
         console.log("savedNominations", savedNominations)
         handleNomination(movie)
     };
@@ -60,17 +58,13 @@ function SearchResults(props) {
                 );
                 if (!response.ok) throw Error(response.message);
                 const data = await response.json();
-                // return data
-                console.log("data from POST", data);
-                console.log("afterData", savedNominations)
-// ---------------------------------------------------------------------
+
                 setSavedNominations(prevState => {
                     console.log("prevstate", prevState)
                     // debugger
                     return [...prevState, data]
                 })
-// ---------------------------------------------------------------------
-                console.log("after trying to change state", savedNominations)
+
                 // try {
 
                 //     // if (response.ok) {
