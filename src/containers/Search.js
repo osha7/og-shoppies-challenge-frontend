@@ -8,7 +8,7 @@ function Search() {
 
     const retrievingQuery = (searchTerms) => {
         let newQueryString = searchTerms.split(" ").join("+");
-        console.log("newQueryString", newQueryString)
+        console.log("newQueryString", newQueryString);
         setQuery(newQueryString);
     };
 

@@ -17,7 +17,7 @@ function SearchBar(props) {
     return (
         <div className="search-bar">
             <form onSubmit={movieFilterOnChange}>
-                <input className="search-input" name="searchTerm" type="search" value={searchTerms} onChange={handleOnChange} placeholder="Search For Movies..."/>
+                <input className="search-input" name="searchTerm" type="search" value={searchTerms} onChange={handleOnChange} placeholder="Begin Your Search..."/>
                 <button className="search-btn" onClick={movieFilterOnChange}>
                     <i className="fa fa-search" aria-hidden="true"></i>
                 </button>

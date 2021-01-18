@@ -65,6 +65,8 @@ function SearchResults(props) {
                     // console.log("prevstate", prevState);
                     return [...prevState, data];
                 });
+                console.log(savedNominations.length)
+                props.setCount(savedNominations.length)
             };
             postMovieNominations();
         } else {
@@ -85,12 +87,8 @@ function SearchResults(props) {
                 <h3>{movie.Title}</h3>
                 <p>Release Year: {movie.Year}</p>
 
-                <button disabled={disabled.indexOf(movie.imdbID)!== -1} onClick={(e) => handleOnClick(e, movie)} style={{
-                    // backgroundColor: `${color}`,
-                    width: '10em',
-                    height: '1.5em'
-                }}>
-                    &#10003; Nominate
+                <button disabled={disabled.indexOf(movie.imdbID)!== -1} onClick={(e) => handleOnClick(e, movie)} >
+                    <span className="btn-text">&#10003; Nominate</span>
                 </button>
             </div>
         );
@@ -99,6 +97,7 @@ function SearchResults(props) {
     if (mappedMovieResults) {
         return (
             console.log(disabled),
+            console.log(props),
             <div className="search-results">
                 <div className="search-results-cards">{mappedMovieResults}</div>
                 <div className="change-page">
